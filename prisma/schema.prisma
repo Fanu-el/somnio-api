@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Test {
+  id        String    @id @default(cuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum Role {
+  SUPER_ADMIN
+  DREAMER
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  BANNED
+  DELETED
+  TEMPORARILY_LOGIN_DISABLED
+}
+
+model File {
+  id       String   @id @default(cuid())
+  path     String
+  mimeType String
+  size     Int      // bytes
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  profilePictureOf User?
+}
+
+enum VerificationCodeType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+enum EmailStatus {
+  SENT
+  FAILED
+}
+
+model Email {
+  id        String      @id @default(cuid())
+  to        String
+  subject   String
+  body      String?     // HTML content sent to the recipient
+  status    EmailStatus
+  error     String?     // error message if failed
+  sentAt    DateTime    @default(now())
+}
+
+model VerificationCode {
+  id        String               @id @default(cuid())
+  code      String               // 6-digit code
+  type      VerificationCodeType
+  userId    String
+  user      User                 @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  usedAt    DateTime?            // null = not yet used
+
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  password     String
+  firstName    String
+  lastName     String
+  role         Role       @default(DREAMER)
+  status       UserStatus @default(ACTIVE)
+  joinDetails  Json       @default("{}")
+  refreshToken String?    // stores hashed refresh token; null when logged out
+
+  banDetails  Json @default("{\"lastBannedAt\":null,\"lastBannedReason\":null,\"banHistory\":[]}")
+  authActivity Json @default("{\"loginAttempts\":0,\"loginDisableCount\":0,\"lastLoggedInAt\":null,\"loginDisableWillResetOn\":null,\"loginHistory\":[]}")
+
+  profilePictureFileId String? @unique
+  profilePictureFile   File?   @relation(fields: [profilePictureFileId], references: [id])
+
+  verificationCodes VerificationCode[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // set on soft delete alongside status = DELETED
+}
