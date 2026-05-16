@@ -6,7 +6,7 @@ function layout(content: string): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vibes</title>
+  <title>Somnio</title>
 </head>
 <body style="margin:0;padding:0;background:#0f0f0f;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f0f;padding:48px 16px;">
@@ -20,7 +20,7 @@ function layout(content: string): string {
           <tr>
             <td style="padding:32px 40px 24px;border-bottom:1px solid #2a2a2a;">
               <span style="font-size:22px;font-weight:800;letter-spacing:-0.5px;color:#ffffff;">
-                vibes<span style="color:#a855f7;">.</span>
+                somnio<span style="color:#a855f7;">.</span>
               </span>
             </td>
           </tr>
@@ -36,7 +36,7 @@ function layout(content: string): string {
           <tr>
             <td style="padding:20px 40px;border-top:1px solid #2a2a2a;">
               <p style="margin:0;font-size:12px;color:#4b4b4b;text-align:center;">
-                © ${new Date().getFullYear()} Vibes. All rights reserved.
+                © ${new Date().getFullYear()} Somnio. All rights reserved.
               </p>
             </td>
           </tr>
@@ -85,7 +85,7 @@ export function verificationEmailTemplate(firstName: string, code: string, expir
       Verify your email 👋
     </h2>
     <p style="margin:0 0 32px;font-size:15px;color:#9ca3af;line-height:1.6;">
-      Hey <strong style="color:#e5e7eb;">${firstName}</strong>, thanks for joining Vibes.
+      Hey <strong style="color:#e5e7eb;">${firstName}</strong>, thanks for joining Somnio.
       Enter the code below to activate your account.
     </p>
 
@@ -100,16 +100,16 @@ export function verificationEmailTemplate(firstName: string, code: string, expir
 
     <div style="background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:16px 20px;">
       <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">
-        🔒 Never share this code with anyone. Vibes will never ask for it.
+        🔒 Never share this code with anyone. Somnio will never ask for it.
         If you didn't create an account, you can safely ignore this email.
       </p>
     </div>
   `;
 
   return {
-    subject: 'Your Vibes verification code',
+    subject: 'Your Somnio verification code',
     html: layout(content),
-    text: `Hey ${firstName}, your Vibes verification code is: ${code}. It expires in ${expiresInMinutes} minutes. Never share this code with anyone.`,
+    text: `Hey ${firstName}, your Somnio verification code is: ${code}. It expires in ${expiresInMinutes} minutes. Never share this code with anyone.`,
   };
 }
 
@@ -129,7 +129,7 @@ export function banNotificationTemplate(firstName: string, reason: string | null
       Hi ${firstName},
     </h2>
     <p style="margin:0 0 24px;font-size:15px;color:#9ca3af;line-height:1.6;">
-      Your Vibes account has been <strong style="color:#f87171;">suspended</strong>
+      Your Somnio account has been <strong style="color:#f87171;">suspended</strong>
       and you will no longer be able to log in.
     </p>
 
@@ -150,9 +150,9 @@ export function banNotificationTemplate(firstName: string, reason: string | null
   `;
 
   return {
-    subject: 'Your Vibes account has been suspended',
+    subject: 'Your Somnio account has been suspended',
     html: layout(content),
-    text: `Hi ${firstName}, your Vibes account has been suspended.${reason ? ` Reason: ${reason}.` : ''} If you believe this is a mistake, please contact our support team.`,
+    text: `Hi ${firstName}, your Somnio account has been suspended.${reason ? ` Reason: ${reason}.` : ''} If you believe this is a mistake, please contact our support team.`,
   };
 }
 
@@ -193,7 +193,7 @@ export function passwordResetEmailTemplate(firstName: string, code: string, expi
     </h2>
     <p style="margin:0 0 32px;font-size:15px;color:#9ca3af;line-height:1.6;">
       Hey <strong style="color:#e5e7eb;">${firstName}</strong>, we received a request to reset
-      your Vibes password. Use the code below to proceed.
+      your Somnio password. Use the code below to proceed.
     </p>
 
     <!-- Code boxes -->
@@ -214,9 +214,9 @@ export function passwordResetEmailTemplate(firstName: string, code: string, expi
   `;
 
   return {
-    subject: 'Reset your Vibes password',
+    subject: 'Reset your Somnio password',
     html: layout(content),
-    text: `Hey ${firstName}, your Vibes password reset code is: ${code}. It expires in ${expiresInMinutes} minutes. If you didn't request this, you can safely ignore this email.`,
+    text: `Hey ${firstName}, your Somnio password reset code is: ${code}. It expires in ${expiresInMinutes} minutes. If you didn't request this, you can safely ignore this email.`,
   };
 }
 
@@ -236,7 +236,7 @@ export function unbanNotificationTemplate(firstName: string) {
       Welcome back, ${firstName} 🎉
     </h2>
     <p style="margin:0 0 24px;font-size:15px;color:#9ca3af;line-height:1.6;">
-      Your Vibes account has been <strong style="color:#4ade80;">restored</strong>.
+      Your Somnio account has been <strong style="color:#4ade80;">restored</strong>.
       You can now log in and pick up where you left off.
     </p>
 
@@ -248,8 +248,8 @@ export function unbanNotificationTemplate(firstName: string) {
   `;
 
   return {
-    subject: 'Your Vibes account has been restored',
+    subject: 'Your Somnio account has been restored',
     html: layout(content),
-    text: `Welcome back, ${firstName}! Your Vibes account has been restored. You can now log in again.`,
+    text: `Welcome back, ${firstName}! Your Somnio account has been restored. You can now log in again.`,
   };
 }
