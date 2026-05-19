@@ -91,8 +91,28 @@ model User {
   profilePictureFile   File?   @relation(fields: [profilePictureFileId], references: [id])
 
   verificationCodes VerificationCode[]
+  sleepLogs         SleepLog[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime? // set on soft delete alongside status = DELETED
 }
+
+model SleepLog {
+  id        String   @id @default(cuid())
+  date      DateTime
+  sleepTime DateTime
+  wakeTime  DateTime
+  timezone  String
+  quality   Int      // 1-5
+  dreams    String?
+  emoji     String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
