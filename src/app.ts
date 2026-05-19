@@ -8,6 +8,7 @@ import { healthRouter } from './routes/health.routes.js';
 import { testRouter } from './routes/test.routes.js';
 import { authRouter } from './routes/auth.routes.js';
 import { userRouter } from './routes/user.routes.js';
+import { coreRouter } from './routes/core.routes.js';
 import { notFoundHandler, errorHandler } from './middleware/error-handler.js';
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/health', healthRouter);
 app.use('/api/test', testRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api/core', coreRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
