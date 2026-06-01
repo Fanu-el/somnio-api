@@ -1,6 +1,5 @@
 node_modules
 dist
-.env
 src/generated
 
 # Uploaded files — keep folder structure, ignore contents
@@ -8,3 +7,8 @@ uploads/**/*
 !uploads/**/.gitkeep
 .vercel
 .env*.local
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+config.bat
